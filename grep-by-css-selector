@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'open-uri'
+require 'nokogiri'
+
+SELECTOR = ARGV.first or raise 'selector required'
+
+STDIN.each_line{|line|
+  line.chomp!
+  doc = Nokogiri open(line)
+  if doc.at(SELECTOR)
+    puts line
+  end
+}
