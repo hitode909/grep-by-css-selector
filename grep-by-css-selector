@@ -5,8 +5,6 @@ require 'nokogiri'
 
 SELECTOR = ARGV.first or raise 'selector required'
 
-p SELECTOR
-
 STDIN.each_line{|line|
   line.chomp!
   begin
