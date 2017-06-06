@@ -5,10 +5,16 @@ require 'nokogiri'
 
 SELECTOR = ARGV.first or raise 'selector required'
 
+p SELECTOR
+
 STDIN.each_line{|line|
   line.chomp!
-  doc = Nokogiri open(line)
-  if doc.at(SELECTOR)
-    puts line
+  begin
+    doc = Nokogiri open(line)
+    if doc.at(SELECTOR)
+      puts line
+    end
+  rescue => error
+    warn "error when checking #{line}: #{error}"
   end
 }
